@@ -2,13 +2,13 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
+        <%= @prototype.title %>
       </p>
-      <%= link_to "by #{@prototype.user.name}", user_path(current_user.id), class: :prototype__user %>
+      <%= link_to "by #{@prototype.user.name}", user_path(@prototype), class: :prototype__user %>
       <% if user_signed_in? %>
         <div class="prototype__manage">
-          <%= link_to "編集する", edit_prototype_path, class: :prototype__btn %>
-          <%= link_to "削除する", prototype_path, class: :prototype__btn, method: :delete %>
+          <%= link_to "編集する", edit_prototype_path(@prototype), class: :prototype__btn %>
+          <%= link_to "削除する", prototype_path(@prototype), class: :prototype__btn, method: :delete %>
         </div>
       <% end %>
       <div class="prototype__image">
@@ -44,7 +44,7 @@
           <% @comments.each do |comment| %>
             <li class="comments_list">
               <%= comment.text %>
-              <%= link_to @prototype.user.name, user_path(current_user.id), class: :comment_user %>
+              <%= link_to current_user.name, user_path(current_user.id), class: :comment_user %>
             </li>
           <% end %>
         </ul>
