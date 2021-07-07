@@ -33,8 +33,7 @@ before_action :authenticate_user!, only: [:destroy, :new, :edit]
 
   def update
     prototype = Prototype.find(params[:id])
-    prototype.update(prototype_params)
-    if prototype.save
+    if prototype.update(prototype_params)
       redirect_to prototype_path(prototype)
     else
       render :edit
